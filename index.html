@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+    <head>
+        <meta charset="UTF-*" />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <link rel="shortcut icon" href="https://c.s-microsoft.com/favicon.ico?v2" />
+        <link rel="manifest" href="/manifest.json">
+        <link rel="stylesheet" href="babel.css">
+        <title>Graphs of Babel</title>
+    </head>
+    <body>
+        <script id="navBar" src="nav.js"></script>
+        <div>
+            <h1>The Graphs of Babel</h1>
+        </div>
+        <div>
+            <hr>
+            <h3>Read Writers</h3>
+            <p>ReadWriters depicts a state diagram for lively, no deadlock, mutually exclusive access to one resource from N ReadWriters.</p>
+            <p>In essence, it is a simulation of a common kind of user client system with some useful technical properties.</p>
+            <p>States are encoded in (2N) size tuples, the first N being the current status of each ReadWriter, and the last N representing iterative turn variables.</p>
+            <br>
+            <p>Each ReadWriter can be in a state of N (Neutral), RR (Requesting Read), R (Reading), RW (Requesting Write), or W (Writing).</p>
+            <p>ReadWriters may enter RR or RW from N at any time, preparing to become active. From either Request, they may then enter an active state.</p>
+            <p>If a ReadWriter enters W, there must not be any other ReadWriters in R or W. R has no such restriction.</p>
+            <p>Finally, ReadWriters may exit from R or W to N at any time.</p>
+            <br>
+            <p>This system already guarantees no deadlocking since actions can always be taken. To ensure liveliness (RR --> R and RW --> W), we use turn variables.</p>
+            <p>Turns are defined by N assignments. Each turn variable has a certain priority, meaning if N = 3, we have [highest, middle, lowest] priority of ReadWriters.</p>
+            <p>Each turn variable refers to one ReadWriter. If that ReadWriter is in a request state alongside others, it must be prioritized for becoming active.</p>
+            <p>Upon a given ReadWriter exiting an active state, its turn variable will become the new lowest priority.</p>
+            <p>As a result, priority will cycle through like a Queue, ensuring that if a ReadWriter requests access, it will always eventually reach the front of the Queue and become active.</p>
+            <br>
+            <p>The absurdity of this system manifests through the number of states required to properly simulate the scenario.</p>
+            <p>With 5 states per ReadWriter and every permutation of N ReadWriters encoded in turn variables (N P N), there are 5^N * N! total states available.</p>
+            <p>There are some impossible states where W exists alongside other R or W. This comes out to N * 2^(N - 1) * N!, meaning there are (5^N - N * 2^(N - 1)) * N! reachable configurations.</p>
+            <p>This grows exceptionally fast with N, reaching 678 states at N = 3.</p>
+            <br>
+            <p>In order to depict this first Graph of Babel, a narrow scope is used.</p>
+            <p>Starting at a default given state, only states accessible in one step will be displayed to move through.</p>
+            <p>Click on states to initiate changes. Colours are used to represent transitional information.</p>
+            <br>
+        </div>
+        <div>
+            <hr>
+            <h3>Σ* - ww</h3>
+            <p>An NPDA is an automata weaker than Turing machines. They are able to move between states and keep track of limited memory using just a stack.</p>
+            <p>They operate off of input strings and binary outputs, allowing them to do limited computation for various problems.</p>
+            <br>
+            <p>One such problem is Σ* - ww, or return True if and only if an input string does NOT consist of two repeated identical strings.</p>
+            <p>This problem is interesting because it's complement, ww, is not solvable using an NPDA, since Σ* - ww relies heavily on nondeterministic stacks that cannot be inverted.</p>
+            <p>This nondeterminism refers to keeping track of the automata in multiple state simultaneously, returning true if ANY state is in a "final" return state.</p>
+            <br>
+            <p>The general solution to Σ* - ww is as follows:</p>
+            <ol>
+                <li>The core of the automata is just two states, odd and even, referring to the length of the input string. Odd is a final state, since odd strings cannot be ww.</li>
+                <li>The machine swithces between odd and even continously. At each switch, it also nondeterministically enters an additional state. This begins a seperate system to check for ww in an even string</li>
+            </ol>
+            <p>This next system relies on a useful property:</p>
+            <ul>
+                <li>Consider a string length x and a string length y. If a larger string is constructed as xxyy, then these characters (x!xy!y) will be at the same index of their half of the string.</li>
+                <li>In other words, if the larger string is ww, then the two ! characters should be identical. This is because if you swap the inner xy, you are given x!y x!y, two identical length strings.</li>
+                <li>As such, if these characters are not equal, than the overall automata should return True, for any x and any y in the larger string.</li>
+            </ul>
+            <p>Continuing:</p>
+            <ol start="3">
+                <li>At every single character, enter the ww system nondeterministically. In this system, store the current character and begin the sequence.</li>
+                <li>The first part of this system uses the stack to burn a number of characters equal to the number of characters already processed, thus creating x!x. Note that this happens while more characters become processed, meaning additional states will enter the ww system at the same time.</li>
+                <li>Next, the system creates y!y. The system does not know ahead of time how long the string is, thus the length of y is nondeterministically randomized, with all incorrect guesses falling short of or exceeding the final part of the sequence.</li>
+                <li>At the point where the second ! is found, the state rejects if !1 == !2 (the characters are equal). Otherwise, it finishes burning y characters and reaches a final state.</li>
+                <li>As stated before, if y does not actually cover the rest of the string perfectly, then the state will either not reach the end or will pass out of the final state.</li>
+            </ol>
+            <br>
+            <p>The fundamental idea behind this automata is to check every character's corresponding character in the second half of the string.</p>
+            <p>However, due to the esoteric restrictions of NPDA's compared to Turing machines, it must also check and discard every character against every other character at random, filtering for the desired results.</p>
+            <br>
+            <p>For this graph, every single nondeterministic branch is shown in operation over a given input string for this automata, causing disgusting chaos as the string gets longer.</p>
+            <p>You may progress through states using the arrow keys. The alphabet is set to be all characters in the input string.</p>
+        </div>
+        <div>
+            <hr>
+            <h3>Force Directed</h3>
+            <p>A Force Directed Graph is an arrangement of relational data meant to intuitively demonstrate similartiy between nodes.</p>
+            <p>In essence, it is a physical 2D simulation, where each node repulses each other node, and each relation attracts its participants.</p>
+            <p>Additionally, all nodes are attracted to the center of the system.</p>
+            <br>
+            <p>The result of this simulation is the automatic distribution of nodes based on similarity, with connected nodes clustered together.</p>
+            <p>As the simulation continues, it will eventually reach an equilibrium state, where the forces are balanced and the graph is completed.</p>
+            <p>In order to more quickly reach a stable state, a static friction force is introduced to prevent movement at low velocities.</p>
+            <br>
+            <p>For this implementation, nodes and relations can be added and removed, manifesting in the live Force Directed Graph and moving to equilibrium.</p>
+            <p>Additionally, a preset is available to quickly observe and modify real data.</p> 
+            <p>This preset is taken from the Correlates of War website, containing all interstates wars from 1816 to 2007.</p>
+        </div>
+        <script src="config.js"></script>
+    </body>
+</html>

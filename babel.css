@@ -1,0 +1,163 @@
+html {
+  background: rgb(7, 0, 7);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: 15pt;
+}
+
+html, body {
+  margin: 0;
+}
+
+body {
+  font-family: "Arial";
+}
+
+nav {
+  background-color: #520032;
+  font-family: "Lucida Console";
+  padding: 0px 30px;
+  font-size: 17px;
+  list-style-type: none;
+  display: flex;
+  top: 0px;
+}
+
+nav a {
+  color: #ffb0e1;
+  text-decoration: none;
+  padding: 20px 20px
+}
+nav a:visited {
+  color: #ffb0e1;
+  transition: 0.3s;
+}
+nav a:hover {
+  color: #ffb0e1;
+  background-color: #7a0c50;
+  transition: 0.3s;
+}
+nav a:active {
+  color: #fd72c8;
+  transition: 0.3s;
+}
+
+h1 {
+  color: #fd72c8;
+  padding: 20px 50px;
+  font-family: "Lucida Console";
+  font-size: 40px;
+}
+
+h3 {
+  color: #fd72c8;
+  padding: 10px 50px;
+  font-family: "Lucida Console";
+  font-size: 30px;
+}
+
+p {
+  color: #fd72c8;
+  padding: 0px 50px;
+  font-family: "Lucida Console";
+  font-size: 13px;
+}
+
+ol {
+  color: #fd72c8;
+  padding: 0px 80px;
+  font-family: "Lucida Console";
+  font-size: 13px;
+}
+
+ul {
+  color: #fd72c8;
+  padding: 0px 80px;
+  font-family: "Lucida Console";
+  font-size: 13px;
+}
+
+li {
+  padding: 10px 0px;
+}
+
+label {
+  color: #fd72c8;
+  padding-left: 50px;
+  font-family: "Lucida Console";
+  font-size: 13px;
+}
+
+input {
+  color: #fd72c8;
+  background-color: #7a0c50;
+  width: 80px;
+}
+
+label {
+  padding-left: 0px;
+}
+
+div.inputmenu {
+  background-color: rgb(17, 0, 17);
+  padding-left: 100px;
+  padding-right: 100px;
+}
+
+div.inputmenu button {
+  color: #fd72c8;
+  background-color: rgb(70, 0, 70);
+}
+
+div.inputmenu select {
+  color: #fd72c8;
+  background-color: rgb(70, 0, 70);
+}
+
+div.inputmenu p {
+  color: #fd72c8;
+  background-color: rgb(17, 0, 17);
+  padding: 0px 0px;
+  display: inline-block;
+  margin: 0px;
+}
+
+div.scrollmenu {
+  background-color: rgb(17, 0, 17);
+  overflow: auto;
+  white-space: nowrap;
+  padding-left: 100px;
+  padding-right: 100px;
+}
+
+div.scrollmenu container {
+  position: relative;
+  display: inline-block;
+  white-space: pre-line;
+  color: #fd72c8;
+  background-color: rgb(50, 0, 50);
+  padding: 30px;
+  border: 2px solid rgb(17, 0, 17);
+  text-decoration: none;
+  text-align: center;
+}
+
+div.scrollmenu container content {
+  text-align: center;
+}
+
+div.scrollmenu container button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  color: #fd72c8;
+  background-color: rgb(70, 0, 70);
+}
+
+div.scrollmenu container button:hover {
+  color: #fc49b7;
+  background-color: rgb(100, 0, 100);
+}
+
+div.scrollmenu container invisible {
+  display: hidden;
+}

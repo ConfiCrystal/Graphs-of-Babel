@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+    <head>
+        <meta charset="UTF-*" />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <link rel="shortcut icon" href="https://c.s-microsoft.com/favicon.ico?v2" />
+        <link rel="manifest" href="/manifest.json">
+        <link rel="stylesheet" href="babel.css">
+        <title>Graphs of Babel</title>
+    </head>
+    <body>
+        <script id="navBar" src="nav.js"></script>
+        <div id="nodeInput" class="inputmenu">
+            <label for="nodeName">New Node Name: </label>
+            <input id="nodeName" type="text"></input>
+            <button id="nodeCreate" onclick="addNode()">Create Node</button>
+        </div>
+        <div id="relationInput" class="inputmenu">
+            <label for="nodeA">New Relation - Node A: </label>
+            <select id="nodeA"></select>
+            <label for="nodeB">Node B: </label>
+            <select id="nodeB"></select>
+            <button id="relationCreate" onclick="addRelation()">Create Relation</button>
+        </div>
+        <div id="presets" class="inputmenu">
+            <p>Preset: </p>
+            <button id="presetWar" onclick="load('COW.csv')">Correlates of War</button>
+        </div>
+        <canvas id="forceCanvas"></canvas>
+        <div id="nodes" class="scrollmenu">
+        </div>
+        <div id="relations" class="scrollmenu">
+        </div>
+        <script src="forceDirected.js"></script>
+    </body>
+</html>
